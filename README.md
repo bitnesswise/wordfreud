@@ -1,5 +1,7 @@
 # WordFreud
 
+![WordFreud Logo](logo_200.png)
+
 This is a password generating tool that offers flexibility when it comes to generating passwords based on someones (or somethings) background.
 It has the following core features:
 
