@@ -247,7 +247,7 @@ class App:
 		self.isVerbose = True
 	def setVerbose(self, boolean):
 		self.isVerbose = boolean
-	def print(self, msg):
+	def output(self, msg):
 		if (self.isVerbose):
 			print(msg)
 	

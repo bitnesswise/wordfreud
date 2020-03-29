@@ -59,7 +59,7 @@ if args.sm is not None:
 if args.offsetyear is not None:
 	properties.offsetYear = args.offsetyear
 # These booleans always have a value
-if (not args.pc and not args.ac and args.c):
+if (not args.pc and not args.ac and (args.c or fpn is not None)):
 	args.ac = True
 properties.fullYear2shortYear = args.fullyear2shortyear
 properties.fullYear2age = args.year2age
@@ -73,8 +73,8 @@ properties.subCamelCase = args.sc
 app.setVerbose(args.v)
 
 attrs = vars(properties)
-app.print("-- init @ " + time.strftime("%Y-%m-%d %H:%M:%S") + " --\nProperties:")
-app.print('\n'.join(" * %s: %s" % item for item in attrs.items())+"\n")
+app.output("-- init @ " + time.strftime("%Y-%m-%d %H:%M:%S") + " --\nProperties:")
+app.output('\n'.join(" * %s: %s" % item for item in attrs.items())+"\n")
 
 # get wordList
 if fpw is not None:
@@ -90,7 +90,7 @@ if fpn is not None:
 		content = f.readlines()
 	nLines = [x.strip() for x in content]
 	numbList = Toolbox(properties).getNumberVariations(nLines)
-	app.print("numbers: " + ", ".join(numbList) + "\n")
+	app.output("numbers: " + ", ".join(numbList) + "\n")
 else:
 	numbList = []
 
@@ -98,20 +98,20 @@ result = []
 
 totalResults = 0
 for line in wLines:
-	app.print("processing " + line)
+	app.output("processing " + line)
 	variations = Toolbox(properties).genLineVariations(line)
-	app.print("- it has " + str(len(variations)) + " word-variations")
+	app.output("- it has " + str(len(variations)) + " word-variations")
 	result = Toolbox(properties).addNumbers(variations, numbList)
-	app.print("- and it has " + str(len(result)) + " total variations with numbers and special characters")
+	app.output("- and it has " + str(len(result)) + " total variations with numbers and special characters")
 	ncResult = len(result)
 	result = Toolbox(properties).addCharacterSubstitutions(result)
 	scResult = len(result)
-	app.print("- and it has " + str(scResult - ncResult) + " total variations with substitution characters")
+	app.output("- and it has " + str(scResult - ncResult) + " total variations with substitution characters")
 	if fpo is not None:
 		fpo.write("\n".join(result) + "\n")
 	else:
 		print(os.linesep.join(result))
-	app.print("- that is a total of "+str(scResult)+" combinations for "+line)
+	app.output("- that is a total of "+str(scResult)+" combinations for "+line)
 	totalResults += scResult
 
 if fpw is not None:
@@ -121,4 +121,4 @@ if fpn is not None:
 if fpo is not None:
 	fpo.close()
 
-app.print("\n-- finished @ " + time.strftime("%Y-%m-%d %H:%M:%S") + " :: "+str(totalResults)+" results in total --")
+app.output("\n-- finished @ " + time.strftime("%Y-%m-%d %H:%M:%S") + " :: "+str(totalResults)+" results in total --")
