@@ -20,7 +20,7 @@ Most tools focus on simply making combinations based on dictionairies. However, 
 
 Suppose the password requirement is a minimum of 8 charachters. 
 
-* A user might that loves apple pies might choose to use this as his/her password : `applepies`. So far, a dictionary might have worked.
+* A user that loves apple pies might choose to use this as his/her password : `applepies`. So far, a dictionary might have worked.
 * If the requirement is to have at least one uppercase character, the user might change this to `Applepies` or even `ApplePies`
 * If another requirement would be to have at least 1 number in it, then the year of birth might be added `ApplePies1970`
 * And if yet another requirement would be to have at least 1 special character in it, the user migth choose to simply at an exclamation point `ApplePies1970!`, or maybe substitute one or more characters `App!ePie$1970`
@@ -28,9 +28,15 @@ Suppose the password requirement is a minimum of 8 charachters.
 In itself, this is a very strong password, that would take about [3 million years](https://howsecureismypassword.net/) to crack and that you will probably not find in a dictionary file. However, for someone that knows the user it could still be relatively easy to guess. This tool exposes that danger.
 
 ## WordFreud?
-This tool combines the psychological aspect of getting to know someone or something, with the puzzle of coming up with combinations that reflect this in a password.
+This tool combines the psychological aspect of getting to know someone with the puzzle of coming up with combinations that reflect this in a password.
 
 # Installation
+The password generator is a python script, so you will need to install [Python](https://www.python.org/downloads/).
+It should work with both python 2.7 and 3.x. It might work in older versions of python too, but this has not been tested.
+
+* Download the zipfile from github (https://github.com/bitnesswise/wordfreud/archive/master.zip)
+* Extract the contents. On \*nix environments you can use `unzip master.zip`; on windows right-click the file and choose *Extral All*. This will create a folder named **wordfreud-master** which will contain the script.
+* Run the python script `python wordfreud.py`
 
 # Usage
 In order to use this tool, you need to create a file with relevant words, seperated by a newline. When words belong together you put them on the same line though; for example `resevoir dogs`.
